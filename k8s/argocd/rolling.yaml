@@ -1,0 +1,19 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: k8s-rolling
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/rootminusone8004/Module-3-deployment
+    targetRevision: HEAD
+    path: Module-3-deployment/rolling
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: k8s-deploy-rolling
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+
